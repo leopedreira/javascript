@@ -32,6 +32,23 @@ class NegociacaoController{
 		this._limpaFormulario();
 		
 	}
+	importaNegociacoes(){
+		let xhr = new XMLHttpRequest();
+		xhr.open('GET', 'negociacoes/semana');
+
+		xhr.onreadystatechange = () => {
+			if (xhr.readyState == 4) {
+				if (xhr.status == 200) {
+					console.log('Obetendo as negociações do servidor');
+				}else{
+					console.log('Não foi possível importar as negociações');
+				}
+			}
+		};
+		xhr.send();
+
+
+	}
 	_criaNegociacao(){
 		return new Negociacao(
 			DateHelper.textoParaData(this._inputData.value),
